@@ -1,0 +1,44 @@
+        <!--Altere daqui pra baixo-->
+        <h3>Parcelas</h3>
+        {assign var="total" value=0}            
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Parcela</th>
+                    <th>Vencimento Previsto</th>
+                    <th>Valor da Parcela</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$financeiroitens item="linha"}  
+                <tr>
+                    <td>{$linha.nrParcela|default:''}</td>
+                    <td> <input type="text" disabled id="dtVencimento-{$linha.nrParcela}" name="dtVencimento" value="{$linha.dtVencimento|date_format:'%d/%m/%Y'|default:Date('d/m/Y')}"></td> 
+                    <td>R$ <input type="text" disabled id="vlParcela-{$linha.nrParcela}" name="vlParcela" value="{$linha.vlParcela|default:''}"></td> 
+                    <td>
+                        <a class="glyphicon glyphicon-pencil" onclick="pedido.editarfinanceiro({$linha.nrParcela});">Editar</a>  |  
+                        <a class="glyphicon glyphicon-floppy-disk" onclick="pedido.alterarfinanceiro({$linha.idFinanceiroParcela}, {$linha.nrParcela});">Gravar</a> |  
+                        <a class="glyphicon glyphicon-trash" onclick="pedido.delfinanceiroitem({$linha.idFinanceiroParcela});">Excluir</a>
+                    </td>
+                </tr>
+                {$total = $total + $linha.vlParcela}                                
+                {/foreach}        
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td><strong>Valor Total do Financeiro:</strong></td>
+                    <td><strong>R$ {$total|default:''} </strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><strong>Valor Total Origem do Pedido:</strong></td>
+                    <td><strong>R$ {$totalpedido|default:''} </strong></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <!--Altere daqui pra cima-->

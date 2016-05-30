@@ -1,0 +1,53 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!-- Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <h1>Relatório de Log</h1>
+
+        <form name="frm_relatorio_pre" action="/log/relatorio001" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label for="edtdataini">Data Inicial:</label>
+                        <input class="form-control" type="text" name="edtdataini" id="edtdataini" value='{$smarty.now|date_format:"%d/%m/%Y"}' />
+                    </div>
+                    <div class="col-xs-4">
+                        <label for="edtdatafim">Data Final:</label>
+                        <input class="form-control" type="text" name="edtdatafim" id="edtdatafim" value='{$smarty.now|date_format:"%d/%m/%Y"}' />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label for="idLogTipo">Tipo de log:</label>
+                        <select name="idLogTipo" id="idLogTipo" class="form-control">
+                            <option value="0">Todos</option>
+                            {html_options options=$logtipo_lista}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label for="idUsuario">Usuario:</label>
+                        <select name="idUsuario" id="idUsuario" class="form-control">
+                            <option value="0">Todos</option>
+                            {html_options options=$usuario_lista}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Gerar Relatório" name="btnGerar" class="btn btn-primary"/>
+        </form>
+
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/jquery_ui/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+<script src="/files/js/log/relatorio001_pre.js"></script>
+{include file="comuns/footer.tpl"}

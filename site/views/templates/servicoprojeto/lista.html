@@ -1,0 +1,70 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <br>
+        <h1>Lista de Serviços do Projeto</h1>
+        <br>
+        <a class="btn btn-primary" href="/servicoprojeto/novo_servicoprojeto"> Novo Serviço</a>
+        <br>       
+        <br>       
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-servicoprojeto" action="/servicoprojeto/busca_servicoprojeto" method="POST" enctype="multipart/form-data">
+                    <div class="col-xs-3">
+                        <label for="form-control">Digite o Nome do Projeto para Pesquisa</label>
+                        <input type="text" class="form-control" name="buscaprojeto" id="buscaprojeto" value="{$buscaprojeto|default:''}">           
+                    </div> 
+                    <div class="col-xs-3">
+                        <label for="form-control">Digite o Nome da Fase para Pesquisa</label>
+                        <input type="text" class="form-control" name="buscafase" id="buscafase" value="{$buscafase|default:''}">           
+                    </div>  
+                    <div class="col-xs-3">
+                        <label for="form-control">Digite o Nome do Serviço para Pesquisa</label>
+                        <input type="text" class="form-control" name="buscaservico" id="buscaservico" value="{$buscaservico|default:''}">           
+                    </div>  
+                    <br>
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                    <a class="btn btn-primary" href='/servicoprojeto' >Limpar </a>
+                </form>
+                <br>
+            </div>
+        </div>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Projeto</th>
+                    <th>Fase</th>
+                    <th>Serviço</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$servicoprojeto_lista item="linha"}  
+                <tr>
+                    <td><a href="/servicoprojeto/novo_servicoprojeto/idProjetoServico/{$linha.idProjetoServico}">{$linha.idProjetoServico}</a></td>
+                    <td>{$linha.nomeprojeto}</td> 
+                    <td>{$linha.nomefase}</td> 
+                    <td>{$linha.dsServicoProjeto}</td> 
+                    <td>{$linha.dsStatusProjeto}</td> 
+                    <td><a class="glyphicon glyphicon-pencil" href="/servicoprojeto/novo_servicoprojeto/idProjetoServico/{$linha.idProjetoServico}">  Editar</a> |  
+                        <a class="glyphicon glyphicon-trash" href="/servicoprojeto/delservicogeral/idProjetoServico/{$linha.idProjetoServico}">  Excluir</a>
+                        <a title="Mudar o status do Serviço" class="glyphicon glyphicon-adjust" href="/servicoprojeto/mudancastatus/idProjetoServico/{$linha.idProjetoServico}">  M</a></td>
+                    </td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}

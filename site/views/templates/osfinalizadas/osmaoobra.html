@@ -1,0 +1,24 @@
+                <table class="table"  border="1">
+                    <thead>
+                        <tr>
+                            <th>Mao de Obra</th>
+                            <th>Inicio da Tarefa</th>
+                            <th>Fim da Tarefa</th>
+                            <th>Observação</th>
+                            <th>Tarefa</th>                            
+                            <th>Resumo Tarefa</th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$lista_ostarefamaoobra item="linha"}  
+                            <tr>
+                                <td>{$linha.dsMaoObra}</td> 
+                                <td>{$linha.dtInicio}</td> 
+                                <td>{$linha.dtFim}</td> 
+                                <td>{$linha.dsObservacao}</td> 
+                                <td>{$linha.dsTarefa}</td> 
+                                <td>{$linha.dsObservacaoTarefa}</td> 
+                            </tr>
+                        {/foreach}        
+                    </tbody>
+                </table>

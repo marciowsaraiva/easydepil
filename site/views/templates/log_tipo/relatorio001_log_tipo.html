@@ -1,0 +1,43 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div>
+            <h1>Relatorio de Tipos de Logs</h1>
+            <h2>{$titulo_relatorio}</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Descricao</th>
+                        <th>Data</th>
+                        <th>stStatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach from=$log_tipo_lista item="linha"}
+                    <tr>
+                        <td>{$linha.idLogTipo}</td>
+                        <td>{$linha.descricao}</td>
+                        <td>{$linha.data}</td>
+                        <td> {if $linha.stStatus==1 }
+                            ATIVO
+                            {else}
+                            $linha.stStatus
+                            {/if}</td>
+                    </tr>
+                    {foreachelse}
+                    <tr><td colspan="6">Nenhum registro encontrado</td></tr>
+                    {/foreach}        
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

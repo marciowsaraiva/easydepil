@@ -1,0 +1,64 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <br>
+        <h1>Lista de Projetos</h1>
+        <br>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-projeto" action="/projeto/busca_projeto" method="POST" enctype="multipart/form-data">
+                    Descrição:
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscadescricao" name="buscadescricao" value="{$buscadescricao|default:''}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                            <br>
+                            <br>
+                        </span>          
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/projeto/novo_projeto"> Novo Projeto</a>
+        <br>       
+        <br>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome do Projeto</th>
+                    <th>Empresa</th>
+                    <th>Colaborador Responsavel</th>
+                    <th>Data da Abertura</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$projeto_lista item="linha"}  
+                <tr>
+                    <td><a href="/projeto/novo_projeto/idProjeto/{$linha.idProjeto}">{$linha.idProjeto}</a></td>
+                    <td>{$linha.dsProjeto}</td> 
+                    <td>{$linha.dsEmpresa}</td> 
+                    <td>{$linha.dsColaborador}</td> 
+                    <td>{$linha.dtAbertura|date_format:'%d/%m/%Y'|default:Date("d/m/Y")}</td> 
+                    <td>{$linha.dsStatusProjeto}</td> 
+                    <td><a title="Editar os dados do Projeto" class="glyphicon glyphicon-pencil" href="/projeto/novo_projeto/idProjeto/{$linha.idProjeto}">  A</a> |  
+                        <a title="Excluir o Projeto" class="glyphicon glyphicon-trash" href="/projeto/delprojeto/idProjeto/{$linha.idProjeto}">  E</a> |
+                        <a title="Mudar o status do Projeto" class="glyphicon glyphicon-adjust" href="/projetomudanca/novo_projetomudanca/idProjeto/{$linha.idProjeto}">  M</a></td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}

@@ -1,0 +1,62 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!-- Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->   
+        <h1>Lista de Logos</h1>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-logo" action="/logo/busca_logo" method="POST" enctype="multipart/form-data">
+                    Nome do arquivo:
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscaarquivo" name="buscaarquivo" value="{$buscaarquivo|default:''}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Buscar</button><br><br>
+                        </span>          
+                    </div>
+                </form>
+            </div>
+        </div>   
+        <a href="/logo/novo_logo" class="btn btn-primary">Novo Logo</a>   
+        <br><br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Cod.</th>
+                    <th>Cod. Projeto</th>
+                    <th>Arquivo</th>
+                    <th>Caminho</th>
+                    <th>stStatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$logo_lista item="linha"}
+                <tr>
+                    <td><a href="/logo/novo_logo/idLogo/{$linha.idLogo}">{$linha.idLogo}</a></td>
+                    <td>{$linha.idProjeto}</td>
+                    <td>{$linha.arquivo}</td>
+                    <td>{$linha.caminho}</td>
+                    <td> {if $linha.stStatus==1 }
+                        ATIVO
+                        {else}
+                        $linha.stStatus
+                        {/if}</td>                    
+                    <td> 
+                        <a class="glyphicon glyphicon-pencil" href="/logo/novo_logo/idLogo/{$linha.idLogo}">Editar</a> |
+                        <a class="glyphicon glyphicon-trash" href="/logo/dellogo/idLogo/{$linha.idLogo}">Excluir</a> </td>
+                </tr>
+                {foreachelse}
+                <tr><td colspan="6">Nenhum arquivo encontrado</td></tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+<script src="/files/js/logo/logo_lista.js"></script>
+{include file="comuns/footer.tpl"}

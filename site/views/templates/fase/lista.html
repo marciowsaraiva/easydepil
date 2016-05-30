@@ -1,0 +1,68 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <br>
+        <h1>Lista de Fases</h1>
+        <br>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-fase" action="/fase/busca_fase" method="POST" enctype="multipart/form-data">
+                    <div class="col-xs-4">
+                        <label for="form-control">Digite o Nome do Projeto para Pesquisa</label>
+                        <input type="text" class="form-control" name="buscaprojeto" id="buscaprojeto" value="{$buscaprojeto|default:''}">           
+                    </div> 
+                    <div class="col-xs-4">
+                        <label for="form-control">Digite o Nome da Fase para Pesquisa</label>
+                        <input type="text" class="form-control" name="buscafase" id="buscafase" value="{$buscafase|default:''}">           
+                    </div>  
+                    <br>
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                    <a class="btn btn-primary" href='/fase' >Limpar </a>
+                </form>
+                    <br>
+            </div>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/fase/novo_fase"> Nova Fase</a>
+        <br>       
+        <br>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Projeto</th>
+                    <th>Nome do Fase</th>
+                    <th>Colaborador Responsavel</th>
+                    <th>Data da Abertura</th>
+                    <th>Status</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$fase_lista item="linha"}  
+                <tr>
+                    <td><a href="/fase/novo_fase/idFase/{$linha.idFase}">{$linha.idFase}</a></td>
+                    <td>{$linha.dsProjeto}</td> 
+                    <td>{$linha.dsFase}</td> 
+                    <td>{$linha.dsColaborador}</td> 
+                    <td>{$linha.dtAbertura|date_format:'%d/%m/%Y'|default:Date("d/m/Y")}</td> 
+                    <td>{$linha.dsStatusProjeto}</td> 
+                    <td ><a title="Editar os dados da Fase" class="glyphicon glyphicon-pencil" href="/fase/novo_fase/idFase/{$linha.idFase}/idProjeto/{$linha.cprojeto}">  A</a> |  
+                        <a title="Excluir a Fase" class="glyphicon glyphicon-trash" href="/fase/delfase/idFase/{$linha.idFase}/idProjeto/{$linha.cprojeto}"> E</a> 
+                        <a title="Mudar o status da Fase" class="glyphicon glyphicon-adjust" href="/fase/mudancadestatus/idFase/{$linha.idFase}">  M</a></td>
+                    </td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}

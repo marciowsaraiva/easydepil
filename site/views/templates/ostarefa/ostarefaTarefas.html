@@ -1,0 +1,29 @@
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tarefa</th>
+                            <th>Detalhes</th>
+                            <th>Digitado em</th>
+                            <th>Digitado por</th>
+                            <th>Inicio da Tarefa</th>
+                            <th>Fim da Tarefa</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$listatarefasdatarefa item="linha"}  
+                            <tr>
+                                <td>{$linha.dsTarefa}</td> 
+                                <td>{$linha.dsObservacaoTarefa}</td> 
+                                <td>{$linha.dtDigitado}</td> 
+                                <td>{$linha.dsUsuario}</td> 
+                                <td>{$linha.dtInicio}</td> 
+                                <td>{$linha.dtFim}</td> 
+                                <td> 
+                                    <a class="glyphicon glyphicon-edit" title ="Mostrar os insumos da tarefa" onclick="ostarefa.editaOSTarefa({$linha.idOSTarefa});"> Mostrar </a> |
+                                    <a class="glyphicon glyphicon-trash" title ="Excluir esta tarefa" onclick="ostarefa.delOSTarefa({$linha.idOSTarefa});"> Excluir </a> 
+                                </td>
+                            </tr>
+                        {/foreach}        
+                    </tbody>
+                </table>

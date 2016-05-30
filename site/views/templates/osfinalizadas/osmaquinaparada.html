@@ -1,0 +1,28 @@
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Maquina</th>
+                    <th>Motivo</th>
+                    <th>Tarefa</th>
+                    <th>De</th>
+                    <th>Ate</th>
+                    <th>Observação</th>
+                    <th>Usuario Digitado</th>
+                    <th>Data Digitado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$os_listamaquinaparada item="linha"}  
+                <tr>
+                    <td>{$linha.dsMaquina}</td> 
+                    <td>{$linha.dsMaquinaParada}</td> 
+                    <td>{$linha.dsTarefa}</td> 
+                    <td>{$linha.dtInicio}</td> 
+                    <td>{$linha.dtFim}</td> 
+                    <td>{$linha.dsObservacao}</td> 
+                    <td>{$linha.dsUsuario}</td> 
+                    <td>{$linha.dtDigitado}</td> 
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>

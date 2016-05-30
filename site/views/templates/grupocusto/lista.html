@@ -1,0 +1,55 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <br>
+        <h1>Lista de Grupo de Custos</h1>
+        <br>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-grupocusto" action="/grupocusto/busca_grupocusto" method="POST" enctype="multipart/form-data">
+                    Descrição:
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscadescricao" name="buscadescricao" value="{$buscadescricao|default:''}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                            <br>
+                            <br>
+                        </span>          
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/grupocusto/novo_grupocusto"> Novo Grupo de Custo</a>
+        <br>       
+        <br>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$grupocusto_lista item="linha"}  
+                <tr>
+                    <td><a href="/grupocusto/novo_grupocusto/idGrupoCusto/{$linha.idGrupoCusto}">{$linha.idGrupoCusto}</a></td>
+                    <td>{$linha.dsGrupoCusto}</td> 
+                    <td><a class="glyphicon glyphicon-pencil" href="/grupocusto/novo_grupocusto/idGrupoCusto/{$linha.idGrupoCusto}">  Editar</a> |  
+                        <a class="glyphicon glyphicon-trash" href="/grupocusto/delgrupocusto/idGrupoCusto/{$linha.idGrupoCusto}">  Excluir</a></td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}

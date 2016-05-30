@@ -1,0 +1,1 @@
+<pre>Array(    [currentFolderPath] => '../../../../../images/uploads/images/'    [new_folder] => teste)</pre>08/Apr/2010 10:45:44

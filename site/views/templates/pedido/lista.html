@@ -1,0 +1,46 @@
+        <!--Altere daqui pra baixo-->
+        <h3>Lista de insumos digitados neste pedido:</h3>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Sequencia</th>
+                    <th>Código</th>
+                    <th>Nome do Insumo</th>
+                    <th>Grupo</th>
+                    <th>Quantidade</th>
+                    <th>Valor Unitário</th>
+                    <th>Valor Total</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$pedidoitens item="linha"}  
+                <tr>
+                    <td>{$linha.idPedidoItem|default:''}</td>
+                    <td>{$linha.idInsumo|default:''}</td>
+                    <td>{$linha.dsInsumo|default:''}</td> 
+                    <td>{$linha.dsGrupo|default:''}</td> 
+                    <td>{$linha.qtPedido|default:''}</td> 
+                    <td>R$ {$linha.vlUnitario|default:''}</td> 
+                    <td>R$ {$linha.vlPedido|default:''}</td> 
+                    <td>
+                        <a class="glyphicon glyphicon-trash" onclick="pedido.delpedidoitem({$linha.idPedidoItem});">  Excluir</a>
+                    </td>
+                </tr>
+                {/foreach}        
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><strong>Valor Total deste Pedido:</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><strong>R$ {$totalpedido|default:''} </strong></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <!--Altere daqui pra cima-->
