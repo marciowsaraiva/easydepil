@@ -2,11 +2,11 @@
 
 Nao Deixem de me avisar...
 
-fabio.pereira@industriafox.com
+jreislemos@outlook.com
 
 Como configurar localhost
 ====================================
-localhost.trocainteligentefox.com.br
+
 
 
 # easydepil
