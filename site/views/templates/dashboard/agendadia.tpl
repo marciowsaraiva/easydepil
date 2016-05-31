@@ -1,6 +1,6 @@
                 <div id="mostraragenda">    
                     <br>
-                    <h3>Agenda do dia - {$diaextenso|default:''} {$nomedodia|default:''} </h3>
+                    <h2>Agenda do dia - {$diaextenso|default:''} {$nomedodia|default:''} </h2>
                     <br>
                     <table class="table">
                     <thead>
@@ -12,6 +12,7 @@
                             <th>Observação</th>
                             <th>Celular</th>
                             <th>E-Mail</th>
+                            <th>Valor</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -25,12 +26,13 @@
                                 <td> <span style="color: {$linha.dsCor}">  {$linha.dsAgenda|default:''} </span></td> 
                                 <td> <span style="color: {$linha.dsCor}">  {$linha.dsCelular|default:''} </span></td> 
                                 <td> <span style="color: {$linha.dsCor}">  {$linha.dsEmail|default:''} </span></td> 
+                                <td> <span style="color: {$linha.dsCor}">  {$linha.vlTratamento|default:'0'} </span></td> 
                                 <td> 
-                                    <a class="glyphicon glyphicon-ok" title ="Confirmar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'confirmar');" > Confirmar </a> |
+                                    {if $linha.idStatusAgenda neq 6} <a class="glyphicon glyphicon-ok" title ="Confirmar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'confirmar');" > Confirmar </a> |  
                                     <a class="glyphicon glyphicon-adjust" title ="Desmarcar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'desmarcar');" > D </a> |
                                     <a class="glyphicon glyphicon-pencil" title ="Remarcar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'remarcar');" > R </a> |
                                     <a class="glyphicon glyphicon-trash" title ="Cancelar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'cancelar');" > E </a> |
-                                    <a class="glyphicon glyphicon-credit-card" title ="Atender" href="#atender" > Atender </a>
+                                    <a class="glyphicon glyphicon-credit-card" title ="Atender" onclick="atendimento_modal.show({$linha.idAgenda|default:''},{$linha.idCliente|default:''},'{$linha.dsCliente|default:''}','{$linha.dsTratamento|default:''}');"> Atender </a>  {/if}
                                 </td>
                             </tr>
                         {/foreach}        

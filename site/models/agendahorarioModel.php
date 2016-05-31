@@ -30,11 +30,16 @@ class agendahorarioModel extends model {
         return $this->read($tables, $campos, $where, $groupby, null, null, $orderby);
     }
     public function getAgendaDia($where = null, $orderby = null) {
-        $campos = array('a.*','t.dsTratamento','c.dsCliente','sa.dsStatusAgenda','time(a.dtAgenda) as Hora','c.dsCelular','c.dsEmail','sa.dsCor');
+        $campos = array('a.*','t.dsTratamento','c.dsCliente','sa.dsStatusAgenda','time(a.dtAgenda) as Hora','c.dsCelular','c.dsEmail','sa.dsCor','t.vlTratamento');
         $tables = 'clinAgenda a inner join clinCliente c on a.idCliente = c.idCliente'
                 . ' left join clinTratamento t on a.idTratamento = t.idTratamento'
                 . ' left join clinStatusAgenda sa on sa.idStatusAgenda = a.idStatusAgenda';
         return $this->read($tables, $campos, $where, null, null, null, $orderby);
+    }
+    public function getAgendaDiaTotais($where = null) {
+        $campos = array('a.idStatusAgenda', 'count(a.idAgenda) as Quantas');
+        $tables = 'clinAgenda a';
+        return $this->read($tables, $campos, $where, 'idStatusAgenda');
     }
 
     public function getAgendaProfissionales($where = null) {

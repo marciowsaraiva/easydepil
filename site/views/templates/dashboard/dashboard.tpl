@@ -25,12 +25,12 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">{$totalos|default:''}</div>
-                                    <div>TOTAL DE O.S</div>
+                                    <div class="huge">{$totalagendado|default:''}</div>
+                                    <div>TOTAL AGENDADOS</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="/dashboard/index_action/tipoos/1">
+                        <a onclick="dashboard.agendageral('1');">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -47,12 +47,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">{$totalemandamento|default:''}</div>
-                                    <div>EM EXECUÇÃO</div>
+                                    <div class="huge">{$totalconfirmado|default:''}</div>
+                                    <div>CONFIRMADOS</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="/dashboard/index_action/tipoos/2">
+                        <a onclick="dashboard.agendageral('2');">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -69,12 +69,12 @@
                                     <i class="fa fa-pause fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">{$totalpausada|default:''}</div>
-                                    <div>PAUSADOS</div>
+                                    <div class="huge">{$totalparaconfirmar|default:''}</div>
+                                    <div>PARA CONFIRMAR</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="/dashboard/index_action/tipoos/3">
+                        <a onclick="dashboard.agendageral('3');">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -91,12 +91,12 @@
                                     <i class="fa fa-pencil fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">{$totalparaaprovar|default:''}</div>
-                                    <div>PARA APROVAR</div>
+                                    <div class="huge">{$totaldesmarcado|default:''}</div>
+                                    <div>DESMARCADOS</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="/dashboard/index_action/tipoos/4">
+                        <a onclick="dashboard.agendageral('4');">
                             <div class="panel-footer">
                                 <span class="pull-left">Detalhes</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -183,29 +183,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div id="atender">                
-                    <h3> &nbsp; Atendimento</h3>
-                    <br>
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label for="hora">Valor Pago </label>
-                            <input type="text" id="valorpago" class="form-control" nome="valorpago"/>
-                        </div>
-                    </div>
-                    <div class="col-xs-2">
-                        <div class="form-group">
-                            <label for="formapagamento">Forma de Pagamento </label>
-                            <select class="form-control" name="idFormaPagamento" id="idFormaPagamento"> 
-                                {html_options options=$lista_formapagamento selected=null}
-                            </select>                      
-                        </div>
-                    </div>
-                    <div class="col-xs-1">
-                    </div>
-                </div>
-            </div>
                             
+            <div id="listaagendageral">
+                 {include file="dashboard/agendageral.tpl"}
+            </div>
+
+                            
+                            
+                            
+            {include file="dashboard/atendimento_modal.tpl"}                            
             <!-- /.row -->
 {*            <div class="row">
                 <div class="col-lg-12">

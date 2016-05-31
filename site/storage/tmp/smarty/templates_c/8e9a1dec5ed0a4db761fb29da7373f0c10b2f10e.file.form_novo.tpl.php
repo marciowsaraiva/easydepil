@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-29 20:06:04
+<?php /* Smarty version Smarty-3.1.18, created on 2016-05-31 07:58:49
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/tipoagenda/form_novo.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:385592102574b75dc93b056-32871989%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:216811746574d6e697737c8-65232173%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '385592102574b75dc93b056-32871989',
+  'nocache_hash' => '216811746574d6e697737c8-65232173',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574b75dc9b75f3_47499815',
+  'unifunc' => 'content_574d6e69832451_30995199',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574b75dc9b75f3_47499815')) {function content_574b75dc9b75f3_47499815($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_574d6e69832451_30995199')) {function content_574d6e69832451_30995199($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div id="wrapper">
     <!-- Sidebar -->

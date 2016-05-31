@@ -27,9 +27,4 @@
                 <div class="col-xs-1">          
                      <label for="GravarAgenda"></label>                    
                      <a class="btn btn-primary" id="btnGravarAgenda" title="Gravar agenda" onclick="dashboard.gravarhorario();" {if $idAgendaHorario|default:'' eq ''} disabled {/if}  >Gravar Horário</a> 
-                </div> 
-                <div class="col-xs-1">          
-                     <label for="GravarAtendimento"></label>                    
-                     <a class="btn btn-primary" id="btnGravarAtendimento" title="Gravar atendimento" onclick="dashboard.gravaratendimento();" {if $idAgendaHorario|default:'' eq ''} disabled {/if}  >Gravar Atendimento</a> 
-                </div> 
-                
+                </div>                 

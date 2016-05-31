@@ -74,6 +74,21 @@ var dashboard = new function () {
                     }
                 });
             };
+            this.agendageral = function(tipo) {
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        "tipo": tipo
+                    },
+                    url: "/dashboard/agendageral",
+                    dataType: "json",
+                    async: false,
+                    success: function (dataReturn) {
+                        $("#mostraragendageral").html(dataReturn.html);
+                        window.location.href = "#mostraragendageral";
+                    }
+                });
+            };
             this.avancar = function() {
                 $.ajax({
                     type: "POST",
@@ -125,7 +140,7 @@ var dashboard = new function () {
                     });
                 }
             };
-            this.gravaratendimento = function() {
+            this.gravaratendimento = function(idCliente, idAgenda) {
                 var erro = false;
                 if ($("#valorpago").val() === '' || $("#valorpago").val() === 0) {
                     alert('Favor digitar o valor pago');
@@ -142,7 +157,8 @@ var dashboard = new function () {
                         data: {
                             "idFormaPagamento": $("#idFormaPagamento").val(),
                             "valorpago": $("#valorpago").val(),
-                            "idAgenda": $("#idAgenda").val()
+                            "idAgenda": idAgenda,
+                            "idCliente": idCliente
                         },
                         url: "/dashboard/gravaratendimento",
                         dataType: "json",
@@ -166,21 +182,6 @@ var dashboard = new function () {
                     async: false,
                     success: function (dataReturn) {
                         $("#listaagendadia").html(dataReturn.html);
-                    }
-                });                
-            };
-            this.lertratamento = function () {
-                $.ajax({
-                    type: "POST",
-                    data: {
-                        "idTratamento": $('#idTratamento').val()
-                    },
-                    url: "/dashboard/lertratamento",
-                    dataType: "json",
-                    async: false,
-                    success: function (dataReturn) {
-                        $("#duracao").val(dataReturn.duracao);
-                        $("#valor").val(dataReturn.valor);
                     }
                 });                
             };
@@ -304,3 +305,32 @@ var dashboard = new function () {
                 };
             };
         };
+        
+var atendimento_modal = new function () {
+    this.show = function (idAgenda, idCliente, nomeCliente, nomeTratamento) {
+        jQuery.ajax({
+            async: false,
+            type: "post",
+            dataType: "html",
+            url: "/dashboard/veratendimento",
+            data: {
+                "idAgenda": idAgenda,
+                "idCliente": idCliente,
+                "nomeCliente": nomeCliente,
+                "nomeTratamento": nomeTratamento
+            },
+            complete: function (event, XMLHttpRequest) {
+                if (("success" == XMLHttpRequest) && (undefined != event.responseText)) {
+                    try {
+                        $('#atendimento_show').each(function () {
+                            $('.modal-body', this).html(event.responseText);
+                            $(this).modal('show');
+                        });
+                    } catch (e) {
+                        console.log(e);
+                    }
+                }
+            }
+        });
+    };
+};        

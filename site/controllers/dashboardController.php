@@ -4,47 +4,6 @@ class dashboard extends controller {
     private $anoInicio = 2015;
 
     public function index_action() {
-//        $tipo = $this->getParam('tipoos');
-//        
-//        $modelFinanceiro = new pedidoModel();
-//        $where = 'parc.stSituacao = 1';
-//        $registros = $modelFinanceiro->getFinanceiroParcelasEmAberto($where);
-//        $this->smarty->assign("registrosfinanceiro", $registros);
-//
-//        $where = 'parc.stSituacao = 1';
-//        $registros = $modelFinanceiro->getFinanceiroParcelasEmAbertoMes($where);
-//        $this->smarty->assign("registrosfinanceiromes", $registros);
-//
-//        $model = new osModel;
-//        $totalos = $model->getTotalOS("stStatus != 0");
-//        $this->smarty->assign("totalos", $totalos[0]['total']);
-//        $totalemandamento = $model->getTotalOS("idStatusOS = 3");
-//        $this->smarty->assign("totalemandamento", $totalemandamento[0]['total']);
-//        $totalpausada = $model->getTotalOS("idStatusOS = 6");
-//        $this->smarty->assign("totalpausada", $totalpausada[0]['total']);
-//        $totalparaaprovar = $model->getTotalOS("idStatusOS = 5");
-//        $this->smarty->assign("totalparaaprovar", $totalparaaprovar[0]['total']);
-//
-//        switch ($tipo) {
-//            case 2:
-//                $where = 'a.idStatusOS = 3';
-//                $this->smarty->assign("classea",'fa-tasks');
-//                break;
-//            case 3:
-//                $where = 'a.idStatusOS = 6';
-//                $this->smarty->assign("classea",'fa-pause');
-//                break;
-//            case 4:
-//                $where = 'a.idStatusOS = 5';
-//                $this->smarty->assign("classea",'fa-pencil');
-//                break;
-//            default:
-//                $where = 'a.stStatus = 1';                
-//                $this->smarty->assign("classea",'fa-comments');
-//                break;
-//        }
-//        $registro = $model->getOS($where);
-//        $this->smarty->assign('os', $registro);
         $lista_profissional = array('' => 'SELECIONE');
         $modelProfissional = new profissionalModel();
         foreach ($modelProfissional->getProfissional() as $value) {
@@ -60,25 +19,80 @@ class dashboard extends controller {
         foreach ($modelTratamento->getTratamento() as $value) {
             $lista_tratamento[$value['idTratamento']] = $value['dsTratamento'];
         }
-        $lista_formapagamento= array('' => 'SELECIONE');
-        $modelFormaPagamento = new formapagamentoModel();
-        foreach ($modelFormaPagamento->getFormaPagamento() as $value) {
-            $lista_formapagamento[$value['idFormaPagamento']] = $value['dsFormaPagamento'];
-        }
+        $this->smarty->assign('lista_agendageral', null);
         $this->smarty->assign('lista_profissional', $lista_profissional);
         $this->smarty->assign('lista_cliente', $lista_cliente);
         $this->smarty->assign('lista_tratamento', $lista_tratamento);
-        $this->smarty->assign('lista_formapagamento', $lista_formapagamento);
         $this->smarty->assign('profissional_padrao', $_SESSION['Profissional']['id']);
         $this->smarty->assign("id_idTipoUsuario", $_SESSION["user"]["tipousuario"]);
         $this->smarty->assign("idPerfil", $_SESSION["user"]["perfil"][0]["idPerfil"]);
         $this->smarty->assign("title", "Dashboard");
+
+        $dataconsultageral = date('Y-m-d');
+        $where = "a.idProfissional = " . $_SESSION['Profissional']['id'] . " and a.dtAgenda >= '" . $dataconsultageral . " 00:00:00'";
+        $modelAgenda = new agendahorarioModel();
+        $agendageral = $modelAgenda->getAgendaDiaTotais($where);
+        $totalparaconfirmar = null;
+        $totalconfirmado = null;
+        $totaldesmarcado = null;
+        $totalagendado = 0;
+        if ($agendageral) {
+            foreach($agendageral as $value) {
+                if ($value['idStatusAgenda'] == 2) {
+                   $totalconfirmado = $value['Quantas'];
+                } 
+                if ($value['idStatusAgenda'] == 1) {
+                   $totalparaconfirmar = $value['Quantas'];
+                } 
+                if ($value['idStatusAgenda'] > 1 and $value['idStatusAgenda'] < 6) {
+                   $totaldesmarcado = $value['Quantas'];
+                } 
+                $totalagendado = $totalagendado + $value['Quantas'];
+            }
+        }
+        $this->smarty->assign('totalconfirmado',$totalconfirmado);
+        $this->smarty->assign('totalparaconfirmar',$totalparaconfirmar);
+        $this->smarty->assign('totaldesmarcado',$totaldesmarcado);
+        $this->smarty->assign('totalagendado',$totalagendado);
         
         $this->profissionalpadrao($_SESSION['Profissional']['id']);
         $datadia = date("Y-m-d"); 
         $_SESSION['datadia']=$datadia;
+
         $this->agendadia($_SESSION['Profissional']['id'], $datadia);
         $this->smarty->display("dashboard/dashboard.tpl");
+        
+    }
+    public function agendageral() {
+        $tipo = $_POST['tipo'];        
+        $modelAgenda = new agendahorarioModel();        
+        switch ($tipo) {            
+            case '2' :
+                $where = 'a.idStatusAgenda = 2';
+                break;
+            case '3' :
+                $where = 'a.idStatusAgenda = 1';
+                break;
+            case '4' :
+                $where = '(a.idStatusAgenda > 1 and a.idStatusAgenda < 6) ';
+                break;
+            default :
+                $where = 'a.idStatusAgenda > 0';
+                break;
+        }
+        $dataconsultageral = date('Y-m-d');
+        $where = $where . " and a.idProfissional = " . $_SESSION['Profissional']['id'] . " and a.dtAgenda >= '" . $dataconsultageral . " 00:00:00'";
+        $orderby = "a.dtAgenda";
+        $agenda = $modelAgenda->getAgendaDia($where, $orderby);
+        $this->smarty->assign('lista_agendageral', $agenda);
+        
+        $html = $this->smarty->fetch('dashboard/agendageral.tpl');
+        
+        $jasonretorno = array(
+            'html' => $html
+        );
+        echo json_encode($jasonretorno);                         
+        
         
     }
     public function gravarhorario(){
@@ -122,6 +136,28 @@ class dashboard extends controller {
         
     }
 
+    public function veratendimento() {
+        
+        $idAgenda = $_POST['idAgenda'];
+        $idCliente = $_POST['idCliente'];
+        $nomeCliente = $_POST['nomeCliente'];
+        $nomeTratamento = $_POST['nomeTratamento'];
+        
+        $lista_formapagamento= array('' => 'SELECIONE');
+        $modelFormaPagamento = new formapagamentoModel();
+        foreach ($modelFormaPagamento->getFormaPagamento() as $value) {
+            $lista_formapagamento[$value['idFormaPagamento']] = $value['dsFormaPagamento'];
+        }
+        
+        $this->smarty->assign('nomeCliente', $nomeCliente);
+        $this->smarty->assign('nomeTratamento', $nomeTratamento);
+        $this->smarty->assign('idCliente', $idCliente);
+        $this->smarty->assign('idAgenda', $idAgenda);
+
+        $this->smarty->assign('lista_formapagamento', $lista_formapagamento);
+        $this->smarty->display("dashboard/atendimento_thumbnail.tpl");
+    }
+    
     public function mudarstatus() {
         $idAgenda = $_POST['idAgenda'];
         $status = $_POST['status'];
@@ -163,6 +199,7 @@ class dashboard extends controller {
     public function gravaratendimento() {
         $idAgenda = $_POST['idAgenda'];
         $idFormaPagamento = $_POST['idFormaPagamento'];
+        $idCliente = $_POST['idCliente'];
         $valorpago = $_POST['valorpago'];
 
         $modeAgenda = new agendahorarioModel();
@@ -176,6 +213,8 @@ class dashboard extends controller {
 
         $data = array(
           'idAgenda' => $idAgenda,
+          'idCliente' => $idCliente,
+          'idProfissional' => $_SESSION['Profissional']['id'],
           'vlFinanceiro' => $valorpago,
           'dtFinanceiro' => $_SESSION['datadia'],
           'idFormaPagamento' => $idFormaPagamento
@@ -230,7 +269,7 @@ class dashboard extends controller {
         $nomedodia = $this->diasemanagrande(substr($dtNormal,6,4) . '-' . substr($dtNormal,3,2) . '-' . substr($dtNormal,0,2));
         $this->smarty->assign('diaextenso', $dtNormal);
         $this->smarty->assign('nomedodia', $nomedodia);
-        $this->smarty->assign('lista_agendadia', $agenda);
+        $this->smarty->assign('lista_agendadia', $agenda);        
     }
 
     public function profissionalpadrao($idProfissional) {
