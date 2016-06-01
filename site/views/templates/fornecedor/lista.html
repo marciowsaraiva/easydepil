@@ -32,9 +32,11 @@
                 <tr>
                     <th>Código</th>
                     <th>Nome do Fornecedor</th>
-                    <th>Endereco</th>
+                    <th>Contato</th>
                     <th>Cidade</th>
-                    <th>Tipo</th>
+                    <th>Fone</th>
+                    <th>Celular</th>
+                    <th>Email</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -43,9 +45,11 @@
                 <tr>
                     <td><a href="/fornecedor/novo_fornecedor/idFornecedor/{$linha.idFornecedor}">{$linha.idFornecedor}</a></td>
                     <td>{$linha.dsFornecedor}</td> 
-                    <td>{$linha.dsEndereco}</td> 
+                    <td>{$linha.dsContato}</td> 
                     <td>{$linha.dsCidade}</td> 
-                    <td>{$linha.dsTipoFornecedor}</td> 
+                    <td>{$linha.dsFone}</td> 
+                    <td>{$linha.dsCelular}</td> 
+                    <td>{$linha.dsEmail}</td> 
                     <td><a class="glyphicon glyphicon-pencil" href="/fornecedor/novo_fornecedor/idFornecedor/{$linha.idFornecedor}">  Editar</a> |  
                         <a class="glyphicon glyphicon-trash" href="/fornecedor/delfornecedor/idFornecedor/{$linha.idFornecedor}">  Excluir</a></td>
                 </tr>

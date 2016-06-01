@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-31 16:06:35
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 15:21:02
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/dashboard/periodos.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:852394031574de0bbad9994-25231525%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1381456864574f278e0883d1-89914955%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'b8ab0241f927aea462f8fccba8cef8f45f32da94' => 
     array (
       0 => '/var/www/html/easydepil.com.br/public/views/templates/dashboard/periodos.tpl',
-      1 => 1464648891,
+      1 => 1464744536,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '852394031574de0bbad9994-25231525',
+  'nocache_hash' => '1381456864574f278e0883d1-89914955',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574de0bbb0d044_60093594',
+  'unifunc' => 'content_574f278e0b8d47_82732628',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574de0bbb0d044_60093594')) {function content_574de0bbb0d044_60093594($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_574f278e0b8d47_82732628')) {function content_574f278e0b8d47_82732628($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/modifier.date_format.php';
 ?>                <h3> &nbsp; Use as setas para mudar de mês dentro do ano - <?php echo (($tmp = @$_smarty_tpl->tpl_vars['mesextenso']->value)===null||$tmp==='' ? '' : $tmp);?>
  </h3>
                 <input type="hidden" id="idAgendaHorario" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['idAgendaHorario']->value)===null||$tmp==='' ? '' : $tmp);?>
@@ -51,13 +51,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </div>        
                 <div class="col-xs-1">          
                      <label for="VerAgenda"></label>                    
-                     <a class="btn btn-primary" id="btnVerAgenda" title="Ver Agenda" href="#agendar" <?php if ((($tmp = @$_smarty_tpl->tpl_vars['idAgendaHorario']->value)===null||$tmp==='' ? '' : $tmp)=='') {?> disabled <?php }?>  >Ver Agenda dia</a> 
+                     <a class="btn btn-primary" id="btnVerAgenda" title="Ver Agenda" href="#mostraragendadodia" <?php if ((($tmp = @$_smarty_tpl->tpl_vars['idAgendaHorario']->value)===null||$tmp==='' ? '' : $tmp)=='') {?> disabled <?php }?>  >Ver Agenda dia</a> 
                 </div> 
                 <div class="col-xs-1">          
                      <label for="Agendar"></label>                    
-                     <a class="btn btn-primary" id="btnNovaAgenda" title="Agendar" href="#agendar" <?php if ((($tmp = @$_smarty_tpl->tpl_vars['idAgendaHorario']->value)===null||$tmp==='' ? '' : $tmp)=='') {?> disabled <?php }?>  >Novo Horário</a> 
-                </div> 
-                <div class="col-xs-1">          
-                     <label for="GravarAgenda"></label>                    
-                     <a class="btn btn-primary" id="btnGravarAgenda" title="Gravar agenda" onclick="dashboard.gravarhorario();" <?php if ((($tmp = @$_smarty_tpl->tpl_vars['idAgendaHorario']->value)===null||$tmp==='' ? '' : $tmp)=='') {?> disabled <?php }?>  >Gravar Horário</a> 
-                </div>                 <?php }} ?>
+                     <a class="btn btn-primary" id="btnNovaAgenda" title="Agendar" href="#agendar" <?php if ((($tmp = @$_smarty_tpl->tpl_vars['idAgendaHorario']->value)===null||$tmp==='' ? '' : $tmp)=='') {?> disabled <?php }?>  >Agendar Horário</a> 
+                </div> <?php }} ?>

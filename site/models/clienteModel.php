@@ -19,6 +19,11 @@ class clienteModel extends model {
         $orderby = 'a.dsCliente';
         return $this->read($tables, array('a.*', 'd.dsTipoCliente'), $where, null, null, null, $orderby);
     }
+    public function getProntuario($where = null) {
+        $tables = 'clinCliente as a';
+        $orderby = 'a.nrProntuario desc';
+        return $this->read($tables, array('a.nrProntuario'), $where, null, 1, null, $orderby);
+    }
 
     //Grava o perfil
     public function setCliente($array) {

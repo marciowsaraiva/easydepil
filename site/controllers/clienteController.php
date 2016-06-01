@@ -58,6 +58,13 @@ class cliente extends controller {
             //Novo Registro
             $registro = $model->estrutura_vazia();
             $registro = $registro[0];
+            
+            $novoprontuario = $model->getProntuario();
+            if ($novoprontuario) {
+                $registro['nrProntuario'] = $novoprontuario[0]['nrProntuario'] + 1;
+            } else {
+                $registro['nrProntuario'] = 1;
+            }
         }
         $modelTipoF = new tipoclienteModel();
         $lista_tipo = array('' => 'SELECIONE');
@@ -105,7 +112,7 @@ class cliente extends controller {
         $data['cdCNPJ'] = ($post['cdCNPJ'] != '') ? $post['cdCNPJ'] : null;
         $data['nrRG'] = ($post['nrRG'] != '') ? $post['nrRG'] : null;
         $data['dtNascimento'] = ($post['dtNascimento'] != '') ? $post['dtNascimento'] : null;
-        $data['nrProntuario'] = ($post['nrProntuario'] != '') ? $post['nrProntuario'] : null;
+        $data['nrProntuario'] = ($post['nrProntuario'] != '') ? $post['nrProntuario'] : 0;
         $data['idTipoCliente'] = ($post['idTipoCliente'] != '') ? $post['idTipoCliente'] : null;
         return $data;
     }

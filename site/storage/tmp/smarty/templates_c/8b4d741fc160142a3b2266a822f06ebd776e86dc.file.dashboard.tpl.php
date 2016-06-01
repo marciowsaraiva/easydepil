@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-31 16:06:20
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 15:20:55
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/dashboard/dashboard.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:478524023574de0acabc167-93709401%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1506198312574f2787347fb5-90686661%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '8b4d741fc160142a3b2266a822f06ebd776e86dc' => 
     array (
       0 => '/var/www/html/easydepil.com.br/public/views/templates/dashboard/dashboard.tpl',
-      1 => 1464710527,
+      1 => 1464744592,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '478524023574de0acabc167-93709401',
+  'nocache_hash' => '1506198312574f2787347fb5-90686661',
   'function' => 
   array (
   ),
@@ -24,15 +24,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'lista_profissional' => 0,
     'profissional_padrao' => 0,
     'lista_cliente' => 0,
+    'idAgendaHorario' => 0,
     'lista_tratamento' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574de0acafca18_25480923',
+  'unifunc' => 'content_574f27873b0e23_11693757',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574de0acafca18_25480923')) {function content_574de0acafca18_25480923($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/function.html_options.php';
-?><?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
-
+<?php if ($_valid && !is_callable('content_574f27873b0e23_11693757')) {function content_574f27873b0e23_11693757($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/function.html_options.php';
+?><div id="topo">
+    
+</div>
+<?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div id="wrapper">
     <!-- Sidebar -->
@@ -144,13 +147,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </div>
             </div>
             <div class="row">
-                <h3> &nbsp; Escolha o Profissional para esta agenda</h3>
-                <br>
                 <div class="col-xs-3">
                     <div class="form-group">
-                        <label for="profissional">Profissional </label>
+                        <label for="profissional">Escoha o Profissional para agenda</label>
                         <select class="form-control" name="idProfissional" id="idProfissional" onchange="dashboard.agendaprofissional();"> 
                             <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['lista_profissional']->value,'selected'=>$_smarty_tpl->tpl_vars['profissional_padrao']->value),$_smarty_tpl);?>
+
+                        </select>                      
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="cliente">Escoha o Cliente para Informações</label>
+                        <select class="form-control" name="idClienteP" id="idClienteP" onchange="dashboard.verdadoscliente();"> 
+                            <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['lista_cliente']->value),$_smarty_tpl);?>
 
                         </select>                      
                     </div>
@@ -173,68 +183,85 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                  <?php echo $_smarty_tpl->getSubTemplate ("dashboard/agendaanalitica.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
             </div>
-      
-            <div id="listaagendadia">
-                 <?php echo $_smarty_tpl->getSubTemplate ("dashboard/agendadia.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+            
+            <div id="mostraragendadodia">
+                <br>
+                <div id="listaagendadia">
+                     <?php echo $_smarty_tpl->getSubTemplate ("dashboard/agendadia.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
+                </div>
             </div>
-
+            <h2>Novo Agendamento</h2>
             <div class="row">
                 <div id="agendar">                
-                    <h3> &nbsp; Novo Agendamento</h3>
-                    <br>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label for="cliente">Cliente </label>
-                            <select class="form-control" name="idCliente" id="idCliente"> 
-                                <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['lista_cliente']->value,'selected'=>null),$_smarty_tpl);?>
+                    <div class="col-xs-1">          
+                         <label for="voltaraotopo"></label>                    
+                         <a class="btn btn-primary" id="btnTopo" title="Voltar ao topo" href="#topo">Voltar ao Topo</a> 
+                    </div> 
+                    <div class="col-xs-1">          
+                         <label for="GravarAgenda"></label>                    
+                         <a class="btn btn-primary" id="btnGravarAgenda" title="Gravar agenda" onclick="dashboard.gravarhorario();" <?php if ((($tmp = @$_smarty_tpl->tpl_vars['idAgendaHorario']->value)===null||$tmp==='' ? '' : $tmp)=='') {?> disabled <?php }?>  >Gravar Horário</a> 
+                    </div>                                 </div>
+            </div>    
+            <br>
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="cliente">Cliente </label>
+                        <select class="form-control" name="idCliente" id="idCliente"> 
+                            <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['lista_cliente']->value,'selected'=>null),$_smarty_tpl);?>
 
-                            </select>                      
-                        </div>
+                        </select>                      
                     </div>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label for="tratamento">Tratamento </label>
-                            <select class="form-control" name="idTratamento" id="idTratamento" onchange='dashboard.lertratamento();'> 
-                                <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['lista_tratamento']->value,'selected'=>null),$_smarty_tpl);?>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="tratamento">Tratamento </label>
+                        <select class="form-control" name="idTratamento" id="idTratamento" onchange='dashboard.lertratamento();'> 
+                            <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['lista_tratamento']->value,'selected'=>null),$_smarty_tpl);?>
 
-                            </select>                      
-                        </div>
+                        </select>                      
                     </div>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label for="observacao">Observação</label>
-                            <input type="text" id="observacao" class="form-control" nome="observacao"/>
-                        </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="observacao">Observação</label>
+                        <input type="text" id="observacao" class="form-control" nome="observacao"/>
                     </div>
-                    <div class="col-xs-1">
-                        <div class="form-group">
-                            <label for="hora">Hora </label>
-                            <input type="text" id="hora" class="form-control" nome="hora" maxlength="5" placeholder="HH:MM"/>
-                        </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="hora">Hora </label>
+                        <input type="text" id="hora" class="form-control" nome="hora" maxlength="5" placeholder="HH:MM"/>
                     </div>
-                    <div class="col-xs-1">
-                        <div class="form-group">
-                            <label for="hora">Duração</label>
-                            <input type="text" id="duracao" class="form-control" nome="duracao"  disabled/>
-                        </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="hora">Duração</label>
+                        <input type="text" id="duracao" class="form-control" nome="duracao"  disabled/>
                     </div>
-                    <div class="col-xs-1">
-                        <div class="form-group">
-                            <label for="hora">Valor</label>
-                            <input type="text" id="valor" class="form-control" nome="valor"  disabled/>
-                        </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="hora">Valor</label>
+                        <input type="text" id="valor" class="form-control" nome="valor"  disabled/>
                     </div>
                 </div>
             </div>
-                            
-            <div id="listaagendageral">
-                 <?php echo $_smarty_tpl->getSubTemplate ("dashboard/agendageral.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+            <br>
+            <br>
+            <div class='row'>
+                <div id="listaagendageral">
+                     <?php echo $_smarty_tpl->getSubTemplate ("dashboard/agendageral.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+                </div>
+            </row>
+            <br>
+            <br>
+            <div id="listadadoscliente">
+                 <?php echo $_smarty_tpl->getSubTemplate ("dashboard/listadadoscliente.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
             </div>
-
-                            
-                            
                             
             <?php echo $_smarty_tpl->getSubTemplate ("dashboard/atendimento_modal.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
                             

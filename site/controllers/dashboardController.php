@@ -50,6 +50,7 @@ class dashboard extends controller {
                 $totalagendado = $totalagendado + $value['Quantas'];
             }
         }
+        $this->smarty->assign('lista_dadoscliente',null);
         $this->smarty->assign('totalconfirmado',$totalconfirmado);
         $this->smarty->assign('totalparaconfirmar',$totalparaconfirmar);
         $this->smarty->assign('totaldesmarcado',$totaldesmarcado);
@@ -69,15 +70,19 @@ class dashboard extends controller {
         switch ($tipo) {            
             case '2' :
                 $where = 'a.idStatusAgenda = 2';
+                $nometipoagenda = ' - Confirmados';
                 break;
             case '3' :
                 $where = 'a.idStatusAgenda = 1';
+                $nometipoagenda = ' - Para confirmar';
                 break;
             case '4' :
-                $where = '(a.idStatusAgenda > 1 and a.idStatusAgenda < 6) ';
+                $where = '(a.idStatusAgenda > 2 and a.idStatusAgenda < 6) ';
+                $nometipoagenda = ' - Desmarcados/Reagendados/Cancelados';
                 break;
             default :
                 $where = 'a.idStatusAgenda > 0';
+                $nometipoagenda = ' - Agenda completa';
                 break;
         }
         $dataconsultageral = date('Y-m-d');
@@ -85,7 +90,7 @@ class dashboard extends controller {
         $orderby = "a.dtAgenda";
         $agenda = $modelAgenda->getAgendaDia($where, $orderby);
         $this->smarty->assign('lista_agendageral', $agenda);
-        
+        $this->smarty->assign('nometipoagenda', $nometipoagenda);
         $html = $this->smarty->fetch('dashboard/agendageral.tpl');
         
         $jasonretorno = array(
@@ -135,6 +140,24 @@ class dashboard extends controller {
         echo json_encode($jasonretorno);                
         
     }
+    
+    public function agendageralcliente() {
+        $dadosagenda = null;
+        $idCliente = $_POST['idCliente'];
+        $modelAgenda = new agendahorarioModel();
+        $where = 'a.idCliente = ' . $idCliente;
+        $dadosagenda = $modelAgenda->getAgendaHorarioCliente($where);
+        if ($dadosagenda) {
+            $nomecliente = $dadosagenda[0]['nomecliente'];
+        }
+        $this->smarty->assign('nomedocliente', $nomecliente);
+        $this->smarty->assign('lista_dadoscliente', $dadosagenda);
+        $html = $this->smarty->fetch('dashboard/listadadoscliente.tpl');
+        $jasonretorno = array(
+            'html' => $html
+        );
+        echo json_encode($jasonretorno);                                 
+    }
 
     public function veratendimento() {
         
@@ -142,6 +165,7 @@ class dashboard extends controller {
         $idCliente = $_POST['idCliente'];
         $nomeCliente = $_POST['nomeCliente'];
         $nomeTratamento = $_POST['nomeTratamento'];
+        $idTratamento = $_POST['idTratamento'];
         
         $lista_formapagamento= array('' => 'SELECIONE');
         $modelFormaPagamento = new formapagamentoModel();
@@ -153,6 +177,7 @@ class dashboard extends controller {
         $this->smarty->assign('nomeTratamento', $nomeTratamento);
         $this->smarty->assign('idCliente', $idCliente);
         $this->smarty->assign('idAgenda', $idAgenda);
+        $this->smarty->assign('idTratamento', $idTratamento);
 
         $this->smarty->assign('lista_formapagamento', $lista_formapagamento);
         $this->smarty->display("dashboard/atendimento_thumbnail.tpl");
@@ -198,8 +223,8 @@ class dashboard extends controller {
     
     public function gravaratendimento() {
         $idAgenda = $_POST['idAgenda'];
-        $idFormaPagamento = $_POST['idFormaPagamento'];
         $idCliente = $_POST['idCliente'];
+        $idFormaPagamento = $_POST['idFormaPagamento'];
         $valorpago = $_POST['valorpago'];
 
         $modeAgenda = new agendahorarioModel();
@@ -211,11 +236,26 @@ class dashboard extends controller {
         );            
         $modeAgenda->updAgenda($data);
 
+        // ler o codigo de receita antes de gravar o financeiro
+        
+        $modelTratamento = new agendahorarioModel();
+        $receita = $modelTratamento->getAgendaTratamento('a.idAgenda = ' . $idAgenda);        
+        if ($receita) {
+            $codigoreceita = $receita[0]['idReceita'];
+            $observacao = $receita[0]['dsTratamento'] . ' - ' . $receita[0]['dsAgenda'];
+        } else {
+            $codigoreceita = null;
+            $observacao = null;
+        }
+        
         $data = array(
           'idAgenda' => $idAgenda,
           'idCliente' => $idCliente,
           'idProfissional' => $_SESSION['Profissional']['id'],
+          'idReceita' => $codigoreceita,
+          'dsObservacao' => $observacao,
           'vlFinanceiro' => $valorpago,
+          'stTipo' => 'C',
           'dtFinanceiro' => $_SESSION['datadia'],
           'idFormaPagamento' => $idFormaPagamento
         );

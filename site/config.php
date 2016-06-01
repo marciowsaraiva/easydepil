@@ -17,11 +17,11 @@
 /*
  * Configuração do Banco de Dados 
  */
-@define('DBHOST', '127.0.0.1');
+@define('DBHOST', 'mysql.hostinger.com.br');
 @define('DBPORT', '3306');
-@define('DBUSER', 'root');
-@define('DBPASS', 'Foxit258');
-@define('DBNAME', 'easydepil');
+@define('DBUSER', 'u812493276_jreis');
+@define('DBPASS', '100603rr');
+@define('DBNAME', 'u812493276_clin');
 @define('DBENCODING', 'utf8');
 
 /*

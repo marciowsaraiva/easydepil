@@ -1,5 +1,7 @@
+<div id="topo">
+    
+</div>
 {include file="comuns/head.tpl"}
-
 <div id="wrapper">
     <!-- Sidebar -->
     {include file="comuns/sidebar.tpl"}
@@ -107,13 +109,19 @@
                 </div>
             </div>
             <div class="row">
-                <h3> &nbsp; Escolha o Profissional para esta agenda</h3>
-                <br>
                 <div class="col-xs-3">
                     <div class="form-group">
-                        <label for="profissional">Profissional </label>
+                        <label for="profissional">Escoha o Profissional para agenda</label>
                         <select class="form-control" name="idProfissional" id="idProfissional" onchange="dashboard.agendaprofissional();"> 
                             {html_options options=$lista_profissional selected=$profissional_padrao}
+                        </select>                      
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="cliente">Escoha o Cliente para Informações</label>
+                        <select class="form-control" name="idClienteP" id="idClienteP" onchange="dashboard.verdadoscliente();"> 
+                            {html_options options=$lista_cliente}
                         </select>                      
                     </div>
                 </div>
@@ -132,64 +140,80 @@
             <div id="mostraragendacompleta">
                  {include file="dashboard/agendaanalitica.tpl"}
             </div>
-      
-            <div id="listaagendadia">
-                 {include file="dashboard/agendadia.tpl"}
+            
+            <div id="mostraragendadodia">
+                <br>
+                <div id="listaagendadia">
+                     {include file="dashboard/agendadia.tpl"}
+                </div>
             </div>
-
+            <h2>Novo Agendamento</h2>
             <div class="row">
                 <div id="agendar">                
-                    <h3> &nbsp; Novo Agendamento</h3>
-                    <br>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label for="cliente">Cliente </label>
-                            <select class="form-control" name="idCliente" id="idCliente"> 
-                                {html_options options=$lista_cliente selected=null}
-                            </select>                      
-                        </div>
+                    <div class="col-xs-1">          
+                         <label for="voltaraotopo"></label>                    
+                         <a class="btn btn-primary" id="btnTopo" title="Voltar ao topo" href="#topo">Voltar ao Topo</a> 
+                    </div> 
+                    <div class="col-xs-1">          
+                         <label for="GravarAgenda"></label>                    
+                         <a class="btn btn-primary" id="btnGravarAgenda" title="Gravar agenda" onclick="dashboard.gravarhorario();" {if $idAgendaHorario|default:'' eq ''} disabled {/if}  >Gravar Horário</a> 
+                    </div>                                 </div>
+            </div>    
+            <br>
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="cliente">Cliente </label>
+                        <select class="form-control" name="idCliente" id="idCliente"> 
+                            {html_options options=$lista_cliente selected=null}
+                        </select>                      
                     </div>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label for="tratamento">Tratamento </label>
-                            <select class="form-control" name="idTratamento" id="idTratamento" onchange='dashboard.lertratamento();'> 
-                                {html_options options=$lista_tratamento selected=null}
-                            </select>                      
-                        </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="tratamento">Tratamento </label>
+                        <select class="form-control" name="idTratamento" id="idTratamento" onchange='dashboard.lertratamento();'> 
+                            {html_options options=$lista_tratamento selected=null}
+                        </select>                      
                     </div>
-                    <div class="col-xs-3">
-                        <div class="form-group">
-                            <label for="observacao">Observação</label>
-                            <input type="text" id="observacao" class="form-control" nome="observacao"/>
-                        </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="observacao">Observação</label>
+                        <input type="text" id="observacao" class="form-control" nome="observacao"/>
                     </div>
-                    <div class="col-xs-1">
-                        <div class="form-group">
-                            <label for="hora">Hora </label>
-                            <input type="text" id="hora" class="form-control" nome="hora" maxlength="5" placeholder="HH:MM"/>
-                        </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="hora">Hora </label>
+                        <input type="text" id="hora" class="form-control" nome="hora" maxlength="5" placeholder="HH:MM"/>
                     </div>
-                    <div class="col-xs-1">
-                        <div class="form-group">
-                            <label for="hora">Duração</label>
-                            <input type="text" id="duracao" class="form-control" nome="duracao"  disabled/>
-                        </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="hora">Duração</label>
+                        <input type="text" id="duracao" class="form-control" nome="duracao"  disabled/>
                     </div>
-                    <div class="col-xs-1">
-                        <div class="form-group">
-                            <label for="hora">Valor</label>
-                            <input type="text" id="valor" class="form-control" nome="valor"  disabled/>
-                        </div>
+                </div>
+                <div class="col-xs-1">
+                    <div class="form-group">
+                        <label for="hora">Valor</label>
+                        <input type="text" id="valor" class="form-control" nome="valor"  disabled/>
                     </div>
                 </div>
             </div>
-                            
-            <div id="listaagendageral">
-                 {include file="dashboard/agendageral.tpl"}
+            <br>
+            <br>
+            <div class='row'>
+                <div id="listaagendageral">
+                     {include file="dashboard/agendageral.tpl"}
+                </div>
+            </row>
+            <br>
+            <br>
+            <div id="listadadoscliente">
+                 {include file="dashboard/listadadoscliente.tpl"}
             </div>
-
-                            
-                            
                             
             {include file="dashboard/atendimento_modal.tpl"}                            
             <!-- /.row -->

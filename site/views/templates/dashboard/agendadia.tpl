@@ -32,7 +32,7 @@
                                     <a class="glyphicon glyphicon-adjust" title ="Desmarcar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'desmarcar');" > D </a> |
                                     <a class="glyphicon glyphicon-pencil" title ="Remarcar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'remarcar');" > R </a> |
                                     <a class="glyphicon glyphicon-trash" title ="Cancelar" onclick="dashboard.mudaragenda({$linha.idAgenda|default:''},'cancelar');" > E </a> |
-                                    <a class="glyphicon glyphicon-credit-card" title ="Atender" onclick="atendimento_modal.show({$linha.idAgenda|default:''},{$linha.idCliente|default:''},'{$linha.dsCliente|default:''}','{$linha.dsTratamento|default:''}');"> Atender </a>  {/if}
+                                    <a class="glyphicon glyphicon-credit-card" title ="Atender" onclick="atendimento_modal.show({$linha.idAgenda|default:''},{$linha.idCliente|default:''},'{$linha.dsCliente|default:''}','{$linha.dsTratamento|default:''}','{$linha.idTratamento|default:''}');"> Atender </a>  {/if}
                                 </td>
                             </tr>
                         {/foreach}        

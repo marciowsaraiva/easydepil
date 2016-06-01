@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-31 16:06:20
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 15:21:09
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/comuns/head.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1242974043574de0acb03b58-20886767%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1333936516574f2795357a53-18020855%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1242974043574de0acb03b58-20886767',
+  'nocache_hash' => '1333936516574f2795357a53-18020855',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574de0acb11ef8_32047133',
+  'unifunc' => 'content_574f279536cbc9_39426352',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574de0acb11ef8_32047133')) {function content_574de0acb11ef8_32047133($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_574f279536cbc9_39426352')) {function content_574f279536cbc9_39426352($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">

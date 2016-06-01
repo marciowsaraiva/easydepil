@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-31 16:06:48
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 15:20:55
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/dashboard/agendadia.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:396260880574de0c82089c4-69846995%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1534617563574f2787556ee6-54802264%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'caa852301dc1ed5c085a07347fba86dffd054c47' => 
     array (
       0 => '/var/www/html/easydepil.com.br/public/views/templates/dashboard/agendadia.tpl',
-      1 => 1464720125,
+      1 => 1464801087,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '396260880574de0c82089c4-69846995',
+  'nocache_hash' => '1534617563574f2787556ee6-54802264',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574de0c830d9a3_81732997',
+  'unifunc' => 'content_574f27875e0314_17237095',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574de0c830d9a3_81732997')) {function content_574de0c830d9a3_81732997($_smarty_tpl) {?>                <div id="mostraragenda">    
+<?php if ($_valid && !is_callable('content_574f27875e0314_17237095')) {function content_574f27875e0314_17237095($_smarty_tpl) {?>                <div id="mostraragenda">    
                     <br>
                     <h2>Agenda do dia - <?php echo (($tmp = @$_smarty_tpl->tpl_vars['diaextenso']->value)===null||$tmp==='' ? '' : $tmp);?>
  <?php echo (($tmp = @$_smarty_tpl->tpl_vars['nomedodia']->value)===null||$tmp==='' ? '' : $tmp);?>
@@ -90,6 +90,7 @@ $_smarty_tpl->tpl_vars["linha"]->_loop = true;
 ,<?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['idCliente'])===null||$tmp==='' ? '' : $tmp);?>
 ,'<?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsCliente'])===null||$tmp==='' ? '' : $tmp);?>
 ','<?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsTratamento'])===null||$tmp==='' ? '' : $tmp);?>
+','<?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['idTratamento'])===null||$tmp==='' ? '' : $tmp);?>
 ');"> Atender </a>  <?php }?>
                                 </td>
                             </tr>

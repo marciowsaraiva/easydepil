@@ -30,7 +30,7 @@
         <table class="table table-striped" border="1">
             <thead>
                 <tr>
-                    <th>Código</th>
+                    <th>Prontuario</th>
                     <th>Nome do Cliente</th>
                     <th>Endereco</th>
                     <th>Cidade</th>
@@ -43,13 +43,13 @@
             <tbody>
                 {foreach from=$cliente_lista item="linha"}  
                 <tr>
-                    <td><a href="/cliente/novo_cliente/idCliente/{$linha.idCliente}">{$linha.idCliente}</a></td>
-                    <td>{$linha.dsCliente}</td> 
-                    <td>{$linha.dsEndereco}</td> 
-                    <td>{$linha.dsCidade}</td> 
-                    <td>{$linha.dsBairro}</td> 
-                    <td>{$linha.dsCelular}</td> 
-                    <td>{$linha.dsTipoCliente}</td> 
+                    <td>{$linha.nrProntuario|default:''}</td>
+                    <td>{$linha.dsCliente|default:''}</td> 
+                    <td>{$linha.dsEndereco|default:''}</td> 
+                    <td>{$linha.dsCidade|default:''}</td> 
+                    <td>{$linha.dsBairro|default:''}</td> 
+                    <td>{$linha.dsCelular|default:''}</td> 
+                    <td>{$linha.dsTipoCliente|default:''}</td> 
                     <td><a class="glyphicon glyphicon-pencil" href="/cliente/novo_cliente/idCliente/{$linha.idCliente}">  Editar</a> |  
                         <a class="glyphicon glyphicon-trash" href="/cliente/delcliente/idCliente/{$linha.idCliente}">  Excluir</a></td>
                 </tr>

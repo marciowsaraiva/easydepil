@@ -38,7 +38,7 @@
                             </select>                      
                         </div>
                     </div>                     
-                    <div class="col-xs-4">
+                    <div class="col-xs-2">
                         <label for="form-control">Valor</label>
                         <input type="text" class="form-control" name="vlTratamento" id="vlTratamento" value="{$registro.vlTratamento|default:''}" >           
                     </div> 
@@ -46,6 +46,14 @@
                         <label for="form-control">Tempo por sessão</label>
                         <input type="text" class="form-control" name="dsTempo" id="dsTempo" value="{$registro.dsTempo|default:''}" >           
                     </div> 
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                            <label for="receita">Codigo Receita</label>
+                            <select class="form-control" name="idReceita" id="idReceita">
+                                {html_options options=$lista_receita selected=$registro.idReceita}
+                            </select>                      
+                        </div>
+                    </div>                     
                 </div> 
                 <br>
                   <div class="col-xs-3">

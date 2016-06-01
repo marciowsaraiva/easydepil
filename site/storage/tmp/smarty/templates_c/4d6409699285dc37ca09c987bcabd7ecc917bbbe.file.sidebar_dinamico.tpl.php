@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-31 16:04:16
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 15:20:55
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/comuns/sidebar_dinamico.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1885298545574de030b83e69-22293523%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:138942223574f278729b780-87823025%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1885298545574de030b83e69-22293523',
+  'nocache_hash' => '138942223574f278729b780-87823025',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574de030bb0b22_84784429',
+  'unifunc' => 'content_574f27873016e3_26952198',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574de030bb0b22_84784429')) {function content_574de030bb0b22_84784429($_smarty_tpl) {?><?php  $_smarty_tpl->tpl_vars["menu_principal"] = new Smarty_Variable; $_smarty_tpl->tpl_vars["menu_principal"]->_loop = false;
+<?php if ($_valid && !is_callable('content_574f27873016e3_26952198')) {function content_574f27873016e3_26952198($_smarty_tpl) {?><?php  $_smarty_tpl->tpl_vars["menu_principal"] = new Smarty_Variable; $_smarty_tpl->tpl_vars["menu_principal"]->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['dados_menu']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars["menu_principal"]->key => $_smarty_tpl->tpl_vars["menu_principal"]->value) {
 $_smarty_tpl->tpl_vars["menu_principal"]->_loop = true;

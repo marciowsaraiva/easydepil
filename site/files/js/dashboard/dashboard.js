@@ -52,7 +52,8 @@ var dashboard = new function () {
                     dataType: "json",
                     async: false,
                     success: function (dataReturn) {
-                        location.reload();                                         
+                       location.reload();                                         
+//                        window.location.href = "#mostraragendadodia";
                     }
                 });
             };
@@ -86,6 +87,21 @@ var dashboard = new function () {
                     success: function (dataReturn) {
                         $("#mostraragendageral").html(dataReturn.html);
                         window.location.href = "#mostraragendageral";
+                    }
+                });
+            };
+            this.verdadoscliente = function() {
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        "idCliente": $('#idClienteP').val()
+                    },
+                    url: "/dashboard/agendageralcliente",
+                    dataType: "json",
+                    async: false,
+                    success: function (dataReturn) {
+                        $("#mostradadoscliente").html(dataReturn.html);
+                        window.location.href = "#mostradadoscliente";
                     }
                 });
             };
@@ -307,7 +323,7 @@ var dashboard = new function () {
         };
         
 var atendimento_modal = new function () {
-    this.show = function (idAgenda, idCliente, nomeCliente, nomeTratamento) {
+    this.show = function (idAgenda, idCliente, nomeCliente, nomeTratamento, idTratamento) {
         jQuery.ajax({
             async: false,
             type: "post",
@@ -317,7 +333,8 @@ var atendimento_modal = new function () {
                 "idAgenda": idAgenda,
                 "idCliente": idCliente,
                 "nomeCliente": nomeCliente,
-                "nomeTratamento": nomeTratamento
+                "nomeTratamento": nomeTratamento,
+                "idTratamento": idTratamento
             },
             complete: function (event, XMLHttpRequest) {
                 if (("success" == XMLHttpRequest) && (undefined != event.responseText)) {

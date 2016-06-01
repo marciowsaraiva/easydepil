@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-26 20:08:15
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 10:59:15
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/cliente/lista.html" */ ?>
-<?php /*%%SmartyHeaderCode:366461198574781dfb046d1-54570868%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1296853215574eea33b05693-95472009%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '7e2e20c32ce782585b10bae497066e480a1842bf' => 
     array (
       0 => '/var/www/html/easydepil.com.br/public/views/templates/cliente/lista.html',
-      1 => 1464301339,
+      1 => 1464789553,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '366461198574781dfb046d1-54570868',
+  'nocache_hash' => '1296853215574eea33b05693-95472009',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574781dfb426f2_84445025',
+  'unifunc' => 'content_574eea33b736c5_01555881',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574781dfb426f2_84445025')) {function content_574781dfb426f2_84445025($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_574eea33b736c5_01555881')) {function content_574eea33b736c5_01555881($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div id="wrapper">
     <!--Sidebar -->
@@ -60,7 +60,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <table class="table table-striped" border="1">
             <thead>
                 <tr>
-                    <th>Código</th>
+                    <th>Prontuario</th>
                     <th>Nome do Cliente</th>
                     <th>Endereco</th>
                     <th>Cidade</th>
@@ -77,20 +77,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars["linha"]->key => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars["linha"]->_loop = true;
 ?>  
                 <tr>
-                    <td><a href="/cliente/novo_cliente/idCliente/<?php echo $_smarty_tpl->tpl_vars['linha']->value['idCliente'];?>
-"><?php echo $_smarty_tpl->tpl_vars['linha']->value['idCliente'];?>
-</a></td>
-                    <td><?php echo $_smarty_tpl->tpl_vars['linha']->value['dsCliente'];?>
+                    <td><?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['nrProntuario'])===null||$tmp==='' ? '' : $tmp);?>
+</td>
+                    <td><?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsCliente'])===null||$tmp==='' ? '' : $tmp);?>
 </td> 
-                    <td><?php echo $_smarty_tpl->tpl_vars['linha']->value['dsEndereco'];?>
+                    <td><?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsEndereco'])===null||$tmp==='' ? '' : $tmp);?>
 </td> 
-                    <td><?php echo $_smarty_tpl->tpl_vars['linha']->value['dsCidade'];?>
+                    <td><?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsCidade'])===null||$tmp==='' ? '' : $tmp);?>
 </td> 
-                    <td><?php echo $_smarty_tpl->tpl_vars['linha']->value['dsBairro'];?>
+                    <td><?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsBairro'])===null||$tmp==='' ? '' : $tmp);?>
 </td> 
-                    <td><?php echo $_smarty_tpl->tpl_vars['linha']->value['dsCelular'];?>
+                    <td><?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsCelular'])===null||$tmp==='' ? '' : $tmp);?>
 </td> 
-                    <td><?php echo $_smarty_tpl->tpl_vars['linha']->value['dsTipoCliente'];?>
+                    <td><?php echo (($tmp = @$_smarty_tpl->tpl_vars['linha']->value['dsTipoCliente'])===null||$tmp==='' ? '' : $tmp);?>
 </td> 
                     <td><a class="glyphicon glyphicon-pencil" href="/cliente/novo_cliente/idCliente/<?php echo $_smarty_tpl->tpl_vars['linha']->value['idCliente'];?>
 ">  Editar</a> |  

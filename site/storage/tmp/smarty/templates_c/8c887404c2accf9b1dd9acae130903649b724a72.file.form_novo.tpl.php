@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-26 20:19:21
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 10:57:53
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/cliente/form_novo.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:93175490557478479effc96-85317435%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:767579325574ee9e1ecf015-34081236%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '93175490557478479effc96-85317435',
+  'nocache_hash' => '767579325574ee9e1ecf015-34081236',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5747847a196cc7_03084950',
+  'unifunc' => 'content_574ee9e2034003_28706943',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5747847a196cc7_03084950')) {function content_5747847a196cc7_03084950($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/function.html_options.php';
+<?php if ($_valid && !is_callable('content_574ee9e2034003_28706943')) {function content_574ee9e2034003_28706943($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/function.html_options.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div id="wrapper">

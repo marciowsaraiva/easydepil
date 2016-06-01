@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2016-05-29 17:01:44
+<?php /* Smarty version Smarty-3.1.18, created on 2016-06-01 15:08:12
          compiled from "/var/www/html/easydepil.com.br/public/views/templates/tratamento/form_novo.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:214259455574b4aa8e16512-35687355%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:330691826574f248c501a46-78942846%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '652e728da2c5800bb88d26cb88e585247aa12a8d' => 
     array (
       0 => '/var/www/html/easydepil.com.br/public/views/templates/tratamento/form_novo.tpl',
-      1 => 1464299671,
+      1 => 1464785324,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '214259455574b4aa8e16512-35687355',
+  'nocache_hash' => '330691826574f248c501a46-78942846',
   'function' => 
   array (
   ),
@@ -19,12 +19,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'registro' => 0,
     'lista_tipotratamento' => 0,
+    'lista_receita' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_574b4aa8eddb51_26554193',
+  'unifunc' => 'content_574f248c54b6a2_87272905',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_574b4aa8eddb51_26554193')) {function content_574b4aa8eddb51_26554193($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/function.html_options.php';
+<?php if ($_valid && !is_callable('content_574f248c54b6a2_87272905')) {function content_574f248c54b6a2_87272905($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_options')) include '/var/www/html/easydepil.com.br/git/site/system/libs/smarty/plugins/function.html_options.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("comuns/head.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div id="wrapper">
@@ -73,7 +74,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                             </select>                      
                         </div>
                     </div>                     
-                    <div class="col-xs-4">
+                    <div class="col-xs-2">
                         <label for="form-control">Valor</label>
                         <input type="text" class="form-control" name="vlTratamento" id="vlTratamento" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['registro']->value['vlTratamento'])===null||$tmp==='' ? '' : $tmp);?>
 " >           
@@ -83,6 +84,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         <input type="text" class="form-control" name="dsTempo" id="dsTempo" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['registro']->value['dsTempo'])===null||$tmp==='' ? '' : $tmp);?>
 " >           
                     </div> 
+                    <div class="col-xs-2">
+                        <div class="form-group">
+                            <label for="receita">Codigo Receita</label>
+                            <select class="form-control" name="idReceita" id="idReceita">
+                                <?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['lista_receita']->value,'selected'=>$_smarty_tpl->tpl_vars['registro']->value['idReceita']),$_smarty_tpl);?>
+
+                            </select>                      
+                        </div>
+                    </div>                     
                 </div> 
                 <br>
                   <div class="col-xs-3">

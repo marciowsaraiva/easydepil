@@ -78,7 +78,7 @@
                     </div> 
                     <div class="col-xs-2">
                         <div class="form-group">
-                            <label for="nomemaoobra">Tipo de Mão de Obra</label>
+                            <label for="nomemaoobra">Tipo de Fornecedor</label>
                             <select class="form-control" name="idTipoFornecedor" id="idTipoFornecedor">
                                 {html_options options=$lista_tipo selected=$registro.idTipoFornecedor}
                             </select>                      

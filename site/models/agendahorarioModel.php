@@ -18,6 +18,19 @@ class agendahorarioModel extends model {
         $tables = 'clinAgendaHorario';
         return $this->read($tables, array('clinAgendaHorario.*','mid(idAno,1,4) as soano' ), $where, null, null, null, null);
     }
+    
+    public function getAgendaHorarioCliente($where = null) {
+        $tables = 'clinAgenda a left join clinFinanceiro f on f.idAgenda = a.idAgenda'
+                . ' left join clinFormaPagamento fp on fp.idFormaPagamento = f.idFormaPagamento'
+                . ' left join clinCliente c on c.idCliente = a.idCliente'
+                . ' left join clinTratamento t on a.idTratamento = t.idTratamento'
+                . ' left join clinStatusAgenda sa on sa.idStatusAgenda = a.idStatusAgenda';                
+        return $this->read($tables, array('a.*','f.vlFinanceiro','fp.dsFormaPagamento','c.dsCliente as nomecliente','t.dsTratamento','sa.dsStatusAgenda','time(a.dtAgenda) as Hora','c.dsCelular','c.dsEmail','sa.dsCor'), $where, null, null, null, null);
+    }
+    public function getAgendaTratamento($where = null) {
+        $tables = 'clinAgenda a left join clinTratamento t on a.idTratamento = t.idTratamento';
+        return $this->read($tables, array('t.idReceita','t.dsTratamento','a.dsAgenda'), $where, null, null, null, null);
+    }
 
     public function getAgendaHorarioProfissionales($where = null) {
         $campos = array('c.dsProfissional, ah.idAgendaHorario, ah.idAno, ac.idProfissional, ai.idAgendaHorarioItens, ac.id, c.dsEmail, c.dsCelular, c.dsCargo');

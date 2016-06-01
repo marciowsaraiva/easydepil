@@ -64,8 +64,14 @@ class tratamento extends controller {
         foreach ($modelTipoTratamento->getTipoTratamento() as $value) {
             $lista_TipoTratamento[$value['idTipoTratamento']] = $value['dsTipoTratamento'];
         }
+        $modelReceita = new receitaModel();
+        $lista_receita = array('' => 'SELECIONE');
+        foreach ($modelReceita->getReceita() as $value) {
+            $lista_receita[$value['idReceita']] = $value['dsReceita'];
+        }
         $this->smarty->assign('registro', $registro);
         $this->smarty->assign('lista_tipotratamento', $lista_TipoTratamento);
+        $this->smarty->assign('lista_receita', $lista_receita);
         $this->smarty->assign('title', 'Novo Tratamento');
         $this->smarty->display('tratamento/form_novo.tpl');
     }
@@ -91,6 +97,7 @@ class tratamento extends controller {
         $data['dsTratamento'] = ($post['dsTratamento'] != '') ? $post['dsTratamento'] : null;
         $data['dsTempo'] = ($post['dsTempo'] != '') ? $post['dsTempo'] : null;
         $data['idTipoTratamento'] = ($post['idTipoTratamento'] != '') ? $post['idTipoTratamento'] : null;
+        $data['idReceita'] = ($post['idReceita'] != '') ? $post['idReceita'] : null;
         $data['vlTratamento'] = ($post['vlTratamento'] != '') ? $post['vlTratamento'] : null;
         return $data;
     }
