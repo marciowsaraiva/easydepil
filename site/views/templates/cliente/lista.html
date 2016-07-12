@@ -1,0 +1,65 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <br>
+        <!--Altere daqui pra baixo-->
+        <h1>Lista de Clientes</h1>
+        <br>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-cliente" action="/cliente/busca_cliente" method="POST" enctype="multipart/form-data">
+                    Descrição:
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscadescricao" name="buscadescricao" value="{$buscadescricao|default:''}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                            <br>
+                            <br>
+                        </span>          
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/cliente/novo_cliente"> Novo Cliente</a>
+        <br>       
+        <br>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Prontuario</th>
+                    <th>Nome do Cliente</th>
+                    <th>Endereco</th>
+                    <th>Cidade</th>
+                    <th>Bairro</th>
+                    <th>Celular</th>
+                    <th>Tipo</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$cliente_lista item="linha"}  
+                <tr>
+                    <td>{$linha.nrProntuario|default:''}</td>
+                    <td>{$linha.dsCliente|default:''}</td> 
+                    <td>{$linha.dsEndereco|default:''}</td> 
+                    <td>{$linha.dsCidade|default:''}</td> 
+                    <td>{$linha.dsBairro|default:''}</td> 
+                    <td>{$linha.dsCelular|default:''}</td> 
+                    <td>{$linha.dsTipoCliente|default:''}</td> 
+                    <td><a class="glyphicon glyphicon-pencil" href="/cliente/novo_cliente/idCliente/{$linha.idCliente}">  Editar</a> |  
+                        <a class="glyphicon glyphicon-trash" href="/cliente/delcliente/idCliente/{$linha.idCliente}">  Excluir</a></td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}

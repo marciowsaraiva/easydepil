@@ -1,0 +1,28 @@
+        <!--Altere daqui pra baixo-->
+        <h3>Lista de despesas digitadas hoje</h3>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Despesa</th>
+                    <th>Fornecedor</th>
+                    <th>Observacao</th>
+                    <th>Valor</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$despesas item="linha"}  
+                <tr>
+                    <td>{$linha.dtFinanceiro|date_format:'%d/%m/%Y'|default:Date("d/m/Y")}</td>
+                    <td>{$linha.dsDespesa|default:''}</td> 
+                    <td>{$linha.dsFornecedor|default:''}</td> 
+                    <td>{$linha.dsObservacao|default:''}</td> 
+                    <td>R$ {$linha.vlFinanceiro|default:''}</td> 
+                    <td><a class="glyphicon glyphicon-trash" href="/lancardespesa/deldespesa/idFinanceiro/{$linha.idFinanceiro}">  Excluir</a></td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->

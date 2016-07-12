@@ -1,0 +1,48 @@
+{include file="comuns/head.tpl"}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div>
+            <h1>Relat&oacute;rio de Usu&aacute;rios</h1>
+            <h2>{$titulo_relatorio}</h2>
+            
+             <table border="0"class="table table-striped" >
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>email</th>
+                    <th>Tipo</th>
+                    <th>Parceiro</th>
+                    <th>Telefone 1</th>
+                    <th>Telefone 2</th>
+                  <tr>
+            </thead>
+            <tbody>
+                {foreach from=$usuarios_lista item="linha"}
+                <tr>
+                    <td>{$linha.idUsuario}</td>
+                    <td>{$linha.nome}</td>
+                    <td>{$linha.email}</td>
+                    <td>{$linha.nome_fantasia}</td>
+                    <td>{$linha.descricao}</td>
+                    <td>{$linha.telefone1}</td>
+                    <td>{$linha.telefone2}</td>
+                    
+                    </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+
+            
+        </div>
+    </body>
+    
+ 
+    
+</html>

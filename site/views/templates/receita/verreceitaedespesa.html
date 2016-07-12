@@ -1,0 +1,67 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <br>
+        <h1>Lista de Receitas e Despesas no Período</h1>
+        <br>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-receita" action="/receita/busca_receita" method="POST" enctype="multipart/form-data">
+                    Descrição:
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscadescricao" name="buscadescricao" value="{$buscadescricao|default:''}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                            <br>
+                            <br>
+                        </span>          
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/receita/novo_receita"> Novo Receita</a>
+        <br>       
+        <br>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Fornecedor/Cliente</th>
+                    <th>Descricao da Receita/Despesa</th>
+                    <th>Valor da Receita</th>
+                    <th>Valor da Despesa</th>
+                    <th>Saldo</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$receitadespesa_lista item="linha"}  
+                <tr>
+                    <td>{$linha.dtFinanceiro}</td> 
+                    <td>{$linha.dsCF}</td> 
+                    <td>{$linha.dsDR}</td> 
+                    {if $linha.stTipo == 'C'}
+                        <td>{$linha.vlFinanceiro}</td> 
+                        <td></td> 
+                    {else}
+                        <td></td> 
+                        <td>{$linha.vlFinanceiro}</td> 
+                    {/if}
+                    <td>{$linha.vlFinanceiro}</td> 
+                    <td><a class="glyphicon glyphicon-trash" href="/receitadespesa/dellancamento/idLancamento/{$linha.idLancamento}/tipo/{$stTipo}">  Excluir</a></td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}

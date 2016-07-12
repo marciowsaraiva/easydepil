@@ -1,0 +1,55 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <br>
+        <h1>Lista de Status de Agenda</h1>
+        <br>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-statusagenda" action="/statusagenda/busca_statusagenda" method="POST" enctype="multipart/form-data">
+                    Descrição:
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscadescricao" name="buscadescricao" value="{$buscadescricao|default:''}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                            <br>
+                            <br>
+                        </span>          
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/statusagenda/novo_statusagenda">Novo Status</a>
+        <br>       
+        <br>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$statusagenda_lista item="linha"}  
+                <tr>
+                    <td><a href="/statusagenda/novo_statusagenda/idStatusAgenda/{$linha.idStatusAgenda}">{$linha.idStatusAgenda}</a></td>
+                    <td>{$linha.dsStatusAgenda}</td> 
+                    <td><a class="glyphicon glyphicon-pencil" href="/statusagenda/novo_statusagenda/idStatusAgenda/{$linha.idStatusAgenda}">  Editar</a> |  
+                        <a class="glyphicon glyphicon-trash" href="/statusagenda/delstatusagenda/idStatusAgenda/{$linha.idStatusAgenda}">  Excluir</a></td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}

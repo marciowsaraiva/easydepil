@@ -1,0 +1,55 @@
+{include file="comuns/head.tpl"}
+<div id="wrapper">
+    <!--Sidebar -->
+    {include file="comuns/sidebar.tpl"}    
+    <div id="page-wrapper">
+        <!--Altere daqui pra baixo-->
+        <br>
+        <h1>Lista de Tipos de Receitas</h1>
+        <br>
+        <div class="panel panel-default">            
+            <div class="panel-footer">
+                <form name="frm-busca-tiporeceita" action="/tiporeceita/busca_tiporeceita" method="POST" enctype="multipart/form-data">
+                    Descrição:
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscadescricao" name="buscadescricao" value="{$buscadescricao|default:''}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                            <br>
+                            <br>
+                        </span>          
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <a class="btn btn-primary" href="/tiporeceita/novo_tiporeceita">Novo Tipo</a>
+        <br>       
+        <br>
+        <br>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$tiporeceita_lista item="linha"}  
+                <tr>
+                    <td><a href="/tiporeceita/novo_tiporeceita/idTipoReceita/{$linha.idTipoReceita}">{$linha.idTipoReceita}</a></td>
+                    <td>{$linha.dsTipoReceita}</td> 
+                    <td><a class="glyphicon glyphicon-pencil" href="/tiporeceita/novo_tiporeceita/idTipoReceita/{$linha.idTipoReceita}">  Editar</a> |  
+                        <a class="glyphicon glyphicon-trash" href="/tiporeceita/deltiporeceita/idTipoReceita/{$linha.idTipoReceita}">  Excluir</a></td>
+                </tr>
+                {/foreach}        
+            </tbody>
+        </table>
+        <!--Altere daqui pra cima-->
+    </div>
+</div>
+<!-- JavaScript -->
+<script src="/files/js/jquery-1.10.2.js"></script>
+<script src="/files/js/bootstrap.js"></script>
+{include file="comuns/footer.tpl"}
